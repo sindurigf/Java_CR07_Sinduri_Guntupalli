@@ -194,12 +194,12 @@ public class Main {
                             try {
                                 FileWriter fileWrite = new FileWriter(".\\Reports\\students.txt", false);
                                 PrintWriter printWrite = new PrintWriter(fileWrite);
-                                printWrite.printf("%15s %20s %20s %50s %20s %20s \n", "StudentID", "FirstName", "LastName", "Address", "Phone Number", "EmailID");
+                                printWrite.printf("%15s %20s %20s %50s %20s %20s \r\n", "StudentID", "FirstName", "LastName", "Address", "Phone Number", "EmailID");
 
                                 for (Student student : studentsList) {
                                     Address address = Address.addressList.get(student.getFkAddressID());
                                     Contact contact = Contact.contactList.get(student.getFkContactID());
-                                    printWrite.printf("%15s %20s %20s %50s %20s %20s \n", student.getStudentID(), student.getStudentFirstName(), student.getStudentLastName(), (address.getStreet() + " ," + address.getZip()+ " " + address.getCity()+ " " + address.getCountry()), contact.getPhoneNumber(), contact.getEmailID());
+                                    printWrite.printf("%15s %20s %20s %50s %20s %20s \r\n", student.getStudentID(), student.getStudentFirstName(), student.getStudentLastName(), (address.getStreet() + " ," + address.getZip()+ " " + address.getCity()+ " " + address.getCountry()), contact.getPhoneNumber(), contact.getEmailID());
                                 }
 
                                 printWrite.close();
