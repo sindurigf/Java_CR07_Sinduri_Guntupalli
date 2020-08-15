@@ -140,7 +140,7 @@ public class ConnectDB {
                 LocalDateTime hireDate = resObjCourse.getObject("teacher.hireDate", LocalDateTime.class);
                 int salary = resObjCourse.getInt("teacher.salary");
                 boolean statusTeacher = resObjCourse.getBoolean("teacher.statusTeacher");
-                System.out.printf("%n%s %s with the ID: %d , working since %s and earning %d (Status: %s) taught the following courses: %n", teacherFirstName, teacherLastName, teacherID, hireDate.format(formatter), salary, (statusTeacher ? "Still Working" : "Not working"));
+                System.out.printf("%n%s %s with the ID: %d, %s, earning $%s (Status: %s) taught the following courses: %n", teacherFirstName, teacherLastName, teacherID, (hireDate == null ? "" : "working since " + hireDate.format(formatter)), salary, (statusTeacher ? "Still Working" : "Left the Job"));
                 System.out.printf("%-8s %-32s %-16s %-100s %n", "ID", "Course Title", "Year Taught", "Description");
             }
             counter++;
