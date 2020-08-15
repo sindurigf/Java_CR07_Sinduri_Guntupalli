@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -132,13 +133,14 @@ public class ConnectDB {
 
         while (resObjCourse.next()) {
             if(counter == 0) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 int teacherID = resObjCourse.getInt("teacher.teacherID");
                 String teacherFirstName = resObjCourse.getString("teacher.teacherFirstName");
                 String teacherLastName = resObjCourse.getString("teacher.teacherLastName");
                 LocalDateTime hireDate = resObjCourse.getObject("teacher.hireDate", LocalDateTime.class);
                 int salary = resObjCourse.getInt("teacher.salary");
                 boolean statusTeacher = resObjCourse.getBoolean("teacher.statusTeacher");
-                System.out.printf("%n%s %s with the ID: %d , working since %s and earning %d (Status: %s) taught the following courses: %n", teacherFirstName, teacherLastName, teacherID, hireDate, salary, (statusTeacher ? "Still Working" : "Not working"));
+                System.out.printf("%n%s %s with the ID: %d , working since %s and earning %d (Status: %s) taught the following courses: %n", teacherFirstName, teacherLastName, teacherID, hireDate.format(formatter), salary, (statusTeacher ? "Still Working" : "Not working"));
                 System.out.printf("%-8s %-32s %-16s %-100s %n", "ID", "Course Title", "Year Taught", "Description");
             }
             counter++;

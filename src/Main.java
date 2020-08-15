@@ -3,6 +3,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -12,7 +13,6 @@ public class Main {
     static ConnectDB connectDB = new ConnectDB();
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-
 
 
         Scanner inputInteger = new Scanner(System.in);
@@ -139,7 +139,7 @@ public class Main {
             for(Student student : studentList) {
                 Address address = Address.addressList.get(student.getFkAddressID());
                 Contact contact = Contact.contactList.get(student.getFkContactID());
-                System.out.printf("%-15s %-30s %-30s %-30s %-30s %-40s %n", student.getStudentID(), student.getStudentFirstName(), student.getStudentLastName(), contact.getPhoneNumber(), contact.getPhoneNumber(),
+                System.out.printf("%-15s %-30s %-30s %-30s %-30s %-40s %n", student.getStudentID(), student.getStudentFirstName(), student.getStudentLastName(), contact.getPhoneNumber(), contact.getEmailID(),
                         (address.getStreet() + " ," + address.getZip() + " " + address.getCity() + " " + address.getCountry()));
             }
         }
@@ -149,11 +149,12 @@ public class Main {
         if(teacherList == null) {
             System.out.println("No teachers!");
         } else {
-            System.out.printf("%-15s %-30s %-30s %-30s %-20s %-30s %-20s %-30s %-40s %n", "TeacherID", "FirstName", "LastName", "HireDate", "Salary", "Status", "PhoneNumber", "EmailID", "Address");
+            System.out.printf("%-15s %-30s %-30s %-30s %-20s %-30s %-20s %-30s %-40s %n", "TeacherID", "FirstName", "LastName", "HireDate", "Salary, $", "Status", "PhoneNumber", "EmailID", "Address");
             for(Teacher teacher : teacherList) {
                 Address address = Address.addressList.get(teacher.getFkAddressID());
                 Contact contact = Contact.contactList.get(teacher.getFkContactID());
-                System.out.printf("%-15s %-30s %-30s %-30s %-20s %-30s %-20s %-30s %-40s %n", teacher.getTeacherID(), teacher.getTeacherFirstName(), teacher.getTeacherLastName(), teacher.getHireDate(), teacher.getSalary(), teacher.isStatusTeacher() ? "Still Working" : "Not Working", contact.getPhoneNumber(), contact.getPhoneNumber(),
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                System.out.printf("%-15s %-30s %-30s %-30s %-20.2f %-30s %-20s %-30s %-40s %n", teacher.getTeacherID(), teacher.getTeacherFirstName(), teacher.getTeacherLastName(), teacher.getHireDate().format(formatter), teacher.getSalary(), teacher.isStatusTeacher() ? "Still Working" : "Not Working", contact.getPhoneNumber(), contact.getEmailID(),
                         (address.getStreet() + " ," + address.getZip() + " " + address.getCity() + " " + address.getCountry()));
             }
         }
