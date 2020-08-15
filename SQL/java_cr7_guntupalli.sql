@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 14, 2020 at 12:31 PM
+-- Generation Time: Aug 15, 2020 at 01:15 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -321,7 +321,7 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`teacherID`, `teacherFirstName`, `teacherLastName`, `hireDate`, `salary`, `fkAddressID`, `fkContactID`, `statusTeacher`) VALUES
-(1, 'Black', 'Widow', '2015-11-02 00:00:00', 30000.00, 2, 2, b'1'),
+(1, 'Black', 'Widow', NULL, 30000.00, 2, 2, b'0'),
 (2, 'Iron', 'Man', '2016-01-10 00:00:00', 25000.00, 3, 3, b'1'),
 (3, 'Bruce', 'Banner', '2016-06-15 00:00:00', 25000.00, 4, 4, b'1'),
 (4, 'Thor', 'Odinson', '2017-08-14 00:00:00', 22000.00, 5, 5, b'1'),
