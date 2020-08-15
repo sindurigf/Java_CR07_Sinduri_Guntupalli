@@ -1,0 +1,7 @@
+TeacherID  FirstName            LastName             Address                                            Phone Number         
+1          Black                Widow                Karlsplatz ,1080 Vienna Austria                    +656641826474        
+2          Iron                 Man                  Karlsplatz ,1080 Vienna Austria                    +656641826474        
+3          Bruce                Banner               Street 10 ,42580 Vienna Austria                    +916641826474        
+4          Thor                 Odinson              Street 10 ,42580 Vienna Austria                    +916641826474        
+5          Captain              Marvel               Street 11 ,52580 Vienna Austria                    +156641826474        
+6          Loki                 Odinson              Street 11 ,52580 Vienna Austria                    +156641826474        

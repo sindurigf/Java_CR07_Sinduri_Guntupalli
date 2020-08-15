@@ -1,0 +1,15 @@
+      StudentID            FirstName             LastName                                            Address         Phone Number 
+              1              Minerva             Fladeboe                    Street 12 ,62580 Vienna Austria        +166643366474 
+              2               Ahalya           Guntupalli                    Street 12 ,62580 Vienna Austria        +166643366474 
+              3                Hella            Kancharla                    Street 13 ,72580 Vienna Austria        +176641826474 
+              4                 Hemu           Rallapalli                    Street 13 ,72580 Vienna Austria        +176641826474 
+              5                 Rani             Princess                    Street 14 ,82580 Vienna Austria         187702171177 
+              6                Subbu              Shimmer                    Street 14 ,82580 Vienna Austria         187702171177 
+              7               Mahesh                Smith                    Street 15 ,92580 Vienna Austria        +199912453377 
+              8                 Luna               Prince                    Street 15 ,92580 Vienna Austria        +199912453377 
+              9               Pinkie                  Pie                    Street 16 ,42580 Vienna Austria        +156641826477 
+             10              Flutter                  Shy                    Street 16 ,42580 Vienna Austria        +156641826477 
+             11             Twilight              Sparkle                    Street 17 ,52580 Vienna Austria        +166643366473 
+             12                Apple                 Jack                    Street 17 ,52580 Vienna Austria        +166643366473 
+             13              Rainbow                 Dash                    Street 18 ,62580 Vienna Austria        +176641826494 
+             14               Rarity                Stone                    Street 18 ,62580 Vienna Austria        +176641826494 
