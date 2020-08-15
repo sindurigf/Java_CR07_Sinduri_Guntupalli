@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -49,8 +52,8 @@ public class ConnectDB {
             int contactID = resObj.getInt("contact.contactID");
             String phoneNumber = resObj.getString("contact.phoneNumber");
             String emailID = resObj.getString("contact.emailID");
-            Address.addressList.add(new Address(addressID, street, zip, city, country));
-            Contact.contactList.add(new Contact(contactID, phoneNumber, emailID));
+            new Address(addressID, street, zip, city, country);
+            new Contact(contactID, phoneNumber, emailID);
             studentList.add(new Student(studentID, studentFirstName, studentLastName, addressID, contactID));
         }
         resObj.close();
@@ -81,8 +84,8 @@ public class ConnectDB {
             int contactID = resObj.getInt("contact.contactID");
             String phoneNumber = resObj.getString("contact.phoneNumber");
             String emailID = resObj.getString("contact.emailID");
-            Address.addressList.add(new Address(addressID, street, zip, city, country));
-            Contact.contactList.add(new Contact(contactID, phoneNumber, emailID));
+            new Address(addressID, street, zip, city, country);
+            new Contact(contactID, phoneNumber, emailID);
             teacherList.add(new Teacher(teacherID, teacherFirstName, teacherLastName, hireDate, salary, statusTeacher, addressID, contactID));
         }
         resObj.close();
@@ -90,18 +93,24 @@ public class ConnectDB {
         return teacherList;
     }
 
-    public List<Course> listAllCourses() throws SQLException {
-        List<Course> courseList = new ArrayList<>();
+    public List<MapYear> listAllCourses() throws SQLException {
+        List<MapYear> courseList = new ArrayList<>();
 
-        PreparedStatement courseStatement = conn.prepareStatement("SELECT * FROM CLASS;");
+        PreparedStatement courseStatement = conn.prepareStatement("SELECT mapclassyear.mapID, mapclassyear.classYear, class.classID, class.classTitle, class.classDescription FROM `mapclassyear` \n" +
+                "INNER JOIN class ON class.classID = mapclassyear.fkClassID\n" +
+                "ORDER BY class.classID, mapclassyear.classYear;");
 
         ResultSet resObj = courseStatement.executeQuery();
         while (resObj.next()) {
             int courseID = resObj.getInt("class.classID");
             String courseTitle = resObj.getString("class.classTitle");
             String courseDescription = resObj.getString("class.classDescription");
-
-            courseList.add(new Course(courseID, courseTitle, courseDescription));
+            int mapID = resObj.getInt("mapclassyear.mapID");
+            int classYear = resObj.getInt("mapclassyear.classYear");
+            if(!Course.courseHashMap.containsKey(courseID)) {
+                new Course(courseID, courseTitle, courseDescription);
+            }
+            courseList.add(new MapYear(mapID, classYear, courseID));
         }
         resObj.close();
         courseStatement.close();
@@ -141,6 +150,40 @@ public class ConnectDB {
         }
         resObjCourse.close();
         courseTeacherStatement.close();
+    }
+
+    public void printAllReport(String filePath) throws IOException, SQLException {
+        FileWriter fileWrite = new FileWriter(filePath, false);
+        PrintWriter printWrite = new PrintWriter(fileWrite);
+        PreparedStatement allListStatement = conn.prepareStatement("SELECT class.classID, class.classTitle, class.classDescription, student.studentID, student.studentFirstName, student.studentLastName, teacher.teacherID, teacher.teacherFirstName, teacher.teacherLastName, mapclassyear.classYear FROM mapclassyear\n" +
+                "INNER JOIN class ON mapclassyear.fkClassID = class.classID\n" +
+                "INNER JOIN mapclassstudent ON mapclassstudent.fkClassMapID = mapclassyear.mapID \n" +
+                "INNER JOIN mapclassteacher ON mapclassteacher.fkClassMapID = mapclassyear.mapID\n" +
+                "INNER JOIN student ON mapclassstudent.fkStudentID = student.studentID\n" +
+                "INNER JOIN teacher ON mapclassteacher.fkTeacherID = teacher.teacherID\n" +
+                "ORDER BY class.classID;");
+
+        ResultSet resObj = allListStatement.executeQuery();
+
+        printWrite.printf("%-15s %-30s %-15s %-30s %-15s %-30s %-15s %-30s %n", "CourseID", "CourseTitle", "YearConducted", "CourseDescription", "TeacherID", "Teacher Name", "StudentID", "Student Name");
+
+        while (resObj.next()) {
+            int courseID = resObj.getInt("class.classID");
+            String courseTitle = resObj.getString("class.classTitle");
+            String courseDescription = resObj.getString("class.classDescription");
+            int courseYear = resObj.getInt("mapclassyear.classYear");
+            int teacherID = resObj.getInt("teacher.teacherID");
+            String teacherName = resObj.getString("teacher.teacherFirstName") + " " + resObj.getString("teacher.teacherLastName");
+            int studentID = resObj.getInt("student.studentID");
+            String studentName = resObj.getString("student.studentFirstName") + " " + resObj.getString("student.studentLastName");
+            printWrite.printf("%-15s %-30s %-15s %-30s %-15s %-30s %-15s %-30s %n", courseID, courseTitle, courseYear, courseDescription.substring(0, 25), teacherID, teacherName, studentID, studentName);
+
+        }
+        resObj.close();
+        allListStatement.close();
+
+        printWrite.close();
+        fileWrite.close();
     }
 
 

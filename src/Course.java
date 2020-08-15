@@ -1,12 +1,16 @@
+import java.util.HashMap;
+
 public class Course {
     private int classID;
     private String classTitle;
     private String classDescription;
+    public static HashMap<Integer, Course> courseHashMap = new HashMap<>();
 
     public Course(int classID, String classTitle, String classDescription) {
         this.classID = classID;
         this.classTitle = classTitle;
         this.classDescription = classDescription;
+        courseHashMap.put(this.classID, this);
     }
 
     public int getClassID() {

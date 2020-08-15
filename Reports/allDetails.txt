@@ -1,0 +1,39 @@
+CourseID        CourseTitle                    YearConducted   CourseDescription              TeacherID       Teacher Name                   StudentID       Student Name                   
+1               JAVA                           2016            Java is a general-purpose      1               Black Widow                    1               Minerva Fladeboe               
+1               JAVA                           2016            Java is a general-purpose      1               Black Widow                    8               Luna Prince                    
+1               JAVA                           2017            Java is a general-purpose      1               Black Widow                    3               Hella Kancharla                
+1               JAVA                           2017            Java is a general-purpose      1               Black Widow                    10              Flutter Shy                    
+1               JAVA                           2018            Java is a general-purpose      6               Loki Odinson                   3               Hella Kancharla                
+1               JAVA                           2018            Java is a general-purpose      6               Loki Odinson                   10              Flutter Shy                    
+1               JAVA                           2019            Java is a general-purpose      6               Loki Odinson                   4               Hemu Rallapalli                
+1               JAVA                           2019            Java is a general-purpose      6               Loki Odinson                   11              Twilight Sparkle               
+2               Construction Management        2018            Construction management (      3               Bruce Banner                   2               Ahalya Guntupalli              
+2               Construction Management        2018            Construction management (      3               Bruce Banner                   9               Pinkie Pie                     
+2               Construction Management        2019            Construction management (      3               Bruce Banner                   5               Rani Princess                  
+2               Construction Management        2019            Construction management (      3               Bruce Banner                   12              Apple Jack                     
+2               Construction Management        2016            Construction management (      3               Bruce Banner                   7               Mahesh Smith                   
+2               Construction Management        2016            Construction management (      3               Bruce Banner                   14              Rarity Stone                   
+2               Construction Management        2017            Construction management (      4               Thor Odinson                   3               Hella Kancharla                
+2               Construction Management        2017            Construction management (      4               Thor Odinson                   7               Mahesh Smith                   
+2               Construction Management        2017            Construction management (      4               Thor Odinson                   10              Flutter Shy                    
+2               Construction Management        2017            Construction management (      4               Thor Odinson                   14              Rarity Stone                   
+3               PHP                            2018            PHP is a general-purpose       4               Thor Odinson                   5               Rani Princess                  
+3               PHP                            2018            PHP is a general-purpose       4               Thor Odinson                   12              Apple Jack                     
+3               PHP                            2017            PHP is a general-purpose       3               Bruce Banner                   6               Subbu Shimmer                  
+3               PHP                            2017            PHP is a general-purpose       3               Bruce Banner                   13              Rainbow Dash                   
+3               PHP                            2019            PHP is a general-purpose       4               Thor Odinson                   6               Subbu Shimmer                  
+3               PHP                            2019            PHP is a general-purpose       4               Thor Odinson                   13              Rainbow Dash                   
+3               PHP                            2016            PHP is a general-purpose       2               Iron Man                       3               Hella Kancharla                
+3               PHP                            2016            PHP is a general-purpose       2               Iron Man                       7               Mahesh Smith                   
+3               PHP                            2016            PHP is a general-purpose       2               Iron Man                       10              Flutter Shy                    
+3               PHP                            2016            PHP is a general-purpose       2               Iron Man                       14              Rarity Stone                   
+4               AutoCAD                        2016            AutoCAD is a commercial c      1               Black Widow                    1               Minerva Fladeboe               
+4               AutoCAD                        2016            AutoCAD is a commercial c      1               Black Widow                    8               Luna Prince                    
+4               AutoCAD                        2016            AutoCAD is a commercial c      5               Captain Marvel                 1               Minerva Fladeboe               
+4               AutoCAD                        2016            AutoCAD is a commercial c      5               Captain Marvel                 8               Luna Prince                    
+4               AutoCAD                        2017            AutoCAD is a commercial c      5               Captain Marvel                 1               Minerva Fladeboe               
+4               AutoCAD                        2017            AutoCAD is a commercial c      5               Captain Marvel                 2               Ahalya Guntupalli              
+4               AutoCAD                        2017            AutoCAD is a commercial c      5               Captain Marvel                 5               Rani Princess                  
+4               AutoCAD                        2017            AutoCAD is a commercial c      5               Captain Marvel                 8               Luna Prince                    
+4               AutoCAD                        2017            AutoCAD is a commercial c      5               Captain Marvel                 9               Pinkie Pie                     
+4               AutoCAD                        2017            AutoCAD is a commercial c      5               Captain Marvel                 12              Apple Jack                     

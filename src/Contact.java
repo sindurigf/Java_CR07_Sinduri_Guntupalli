@@ -1,18 +1,17 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class Contact {
     private int contactID;
     private String phoneNumber;
     private String emailID;
 
-    public static List<Contact> contactList = new ArrayList<>();
+    public static HashMap<Integer, Contact> contactList = new HashMap<>();
 
     public Contact(int contactID, String phoneNumber, String emailID) {
         this.contactID = contactID;
         this.phoneNumber = phoneNumber;
         this.emailID = emailID;
-        contactList.add(this);
+        contactList.put(this.contactID, this);
     }
 
     public int getContactID() {

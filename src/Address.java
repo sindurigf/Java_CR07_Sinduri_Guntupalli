@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class Address {
     private int addressID;
@@ -8,7 +7,7 @@ public class Address {
     private String city;
     private String country;
 
-    public static List<Address> addressList = new ArrayList<>();
+    public static HashMap<Integer, Address> addressList = new HashMap<>();
 
     public Address(int addressID, String street, int zip, String city, String country) {
         this.addressID = addressID;
@@ -16,7 +15,7 @@ public class Address {
         this.zip = zip;
         this.city = city;
         this.country = country;
-        addressList.add(this);
+        addressList.put(this.getAddressID(), this);
     }
 
     public int getAddressID() {

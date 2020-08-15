@@ -135,8 +135,12 @@ public class Main {
         if(studentList == null) {
             System.out.println("No students!");
         } else {
+            System.out.printf("%-15s %-30s %-30s %-30s %-30s %-40s %n", "StudentID", "FirstName", "LastName", "PhoneNumber", "EmailID", "Address");
             for(Student student : studentList) {
-                System.out.println("ID = " + student.getStudentID() + ", Name = " + student.getStudentFirstName() + ", Address = " + Address.addressList.get(student.getFkAddressID()).getCity());
+                Address address = Address.addressList.get(student.getFkAddressID());
+                Contact contact = Contact.contactList.get(student.getFkContactID());
+                System.out.printf("%-15s %-30s %-30s %-30s %-30s %-40s %n", student.getStudentID(), student.getStudentFirstName(), student.getStudentLastName(), contact.getPhoneNumber(), contact.getPhoneNumber(),
+                        (address.getStreet() + " ," + address.getZip() + " " + address.getCity() + " " + address.getCountry()));
             }
         }
     }
@@ -145,18 +149,24 @@ public class Main {
         if(teacherList == null) {
             System.out.println("No teachers!");
         } else {
+            System.out.printf("%-15s %-30s %-30s %-30s %-20s %-30s %-20s %-30s %-40s %n", "TeacherID", "FirstName", "LastName", "HireDate", "Salary", "Status", "PhoneNumber", "EmailID", "Address");
             for(Teacher teacher : teacherList) {
-                System.out.println("ID = " + teacher.getTeacherID() + ", Name = " + teacher.getTeacherFirstName() + ", Address = " + Address.addressList.get(teacher.getFkAddressID()).getStreet() + ", Hire Date: " + teacher.getHireDate() + ", Status: " + teacher.isStatusTeacher());
+                Address address = Address.addressList.get(teacher.getFkAddressID());
+                Contact contact = Contact.contactList.get(teacher.getFkContactID());
+                System.out.printf("%-15s %-30s %-30s %-30s %-20s %-30s %-20s %-30s %-40s %n", teacher.getTeacherID(), teacher.getTeacherFirstName(), teacher.getTeacherLastName(), teacher.getHireDate(), teacher.getSalary(), teacher.isStatusTeacher() ? "Still Working" : "Not Working", contact.getPhoneNumber(), contact.getPhoneNumber(),
+                        (address.getStreet() + " ," + address.getZip() + " " + address.getCity() + " " + address.getCountry()));
             }
         }
     }
 
-    public static void printAllCourses(List<Course> courseList) {
+    public static void printAllCourses(List<MapYear> courseList) {
         if(courseList == null) {
             System.out.println("No Courses!");
         } else {
-            for(Course course : courseList) {
-                System.out.println("ID = " + course.getClassID() + ", Name = " + course.getClassTitle() + ", Description = " + course.getClassDescription());
+            System.out.printf("%-15s %-30s %-30s %-100s %n", "CourseID", "CourseTitle", "YearConducted", "CourseDescription");
+            for(MapYear courseMap : courseList) {
+                Course course = Course.courseHashMap.get(courseMap.getFkClassID());
+                System.out.printf("%-15s %-30s %-30s %-100s %n", course.getClassID(), course.getClassTitle(), courseMap.getClassYear(), course.getClassDescription().substring(0, 90));
             }
         }
     }
@@ -183,12 +193,12 @@ public class Main {
                             try {
                                 FileWriter fileWrite = new FileWriter(".\\Reports\\students.txt", false);
                                 PrintWriter printWrite = new PrintWriter(fileWrite);
-                                printWrite.printf("%15s %20s %20s %50s %20s %n", "StudentID", "FirstName", "LastName", "Address", "Phone Number", "EmailID");
+                                printWrite.printf("%15s %20s %20s %50s %20s %20s \n", "StudentID", "FirstName", "LastName", "Address", "Phone Number", "EmailID");
 
                                 for (Student student : studentsList) {
                                     Address address = Address.addressList.get(student.getFkAddressID());
                                     Contact contact = Contact.contactList.get(student.getFkContactID());
-                                    printWrite.printf("%15s %20s %20s %50s %20s %n", student.getStudentID(), student.getStudentFirstName(), student.getStudentLastName(), (address.getStreet() + " ," + address.getZip()+ " " + address.getCity()+ " " + address.getCountry()), contact.getPhoneNumber(), contact.getEmailID());
+                                    printWrite.printf("%15s %20s %20s %50s %20s %20s \n", student.getStudentID(), student.getStudentFirstName(), student.getStudentLastName(), (address.getStreet() + " ," + address.getZip()+ " " + address.getCity()+ " " + address.getCountry()), contact.getPhoneNumber(), contact.getEmailID());
                                 }
 
                                 printWrite.close();
@@ -213,12 +223,12 @@ public class Main {
                             try {
                                 FileWriter fileWrite = new FileWriter(".\\Reports\\teachers.txt", false);
                                 PrintWriter printWrite = new PrintWriter(fileWrite);
-                                printWrite.printf("%-10s %-20s %-20s %-50s %-20s %n", "TeacherID", "FirstName", "LastName", "Address", "Phone Number", "EmailID");
+                                printWrite.printf("%-10s %-20s %-20s %-50s %-20s %-20s %n", "TeacherID", "FirstName", "LastName", "Address", "Phone Number", "EmailID");
 
                                 for (Teacher teacher : teachersList) {
                                     Address address = Address.addressList.get(teacher.getFkAddressID());
                                     Contact contact = Contact.contactList.get(teacher.getFkContactID());
-                                    printWrite.printf("%-10d %-20s %-20s %-50s %-20s %n", teacher.getTeacherID(),
+                                    printWrite.printf("%-10d %-20s %-20s %-50s %-20s %-20s %n", teacher.getTeacherID(),
                                             teacher.getTeacherFirstName(), teacher.getTeacherLastName(),
                                             (address.getStreet() + " ," + address.getZip()+ " " + address.getCity()+ " " + address.getCountry()),
                                             contact.getPhoneNumber(), contact.getEmailID());
@@ -240,7 +250,27 @@ public class Main {
                     case (3):
                         init();
                         try {
-                            File courseFile = createFile("courses");
+                            List<MapYear> courseMapList = connectDB.listAllCourses();
+                            createFile("courses");
+                            try {
+                                FileWriter fileWrite = new FileWriter(".\\Reports\\courses.txt", false);
+                                PrintWriter printWrite = new PrintWriter(fileWrite);
+
+                                printWrite.printf("%15s %80s %50s %100s %n", "CourseID", "CourseTitle", "YearConducted", "CourseDescription");
+
+                                for (MapYear mapYear: courseMapList) {
+                                    Course course = Course.courseHashMap.get(mapYear.getFkClassID());
+                                    printWrite.printf("%15d %80s %50d %100s %n", course.getClassID(), course.getClassTitle(), mapYear.getClassYear(), course.getClassDescription().substring(0, 90));
+                                }
+
+
+                                printWrite.close();
+                                fileWrite.close();
+                                System.out.println("Successfully wrote to file.");
+                            } catch (Exception e) {
+                                System.out.println("An error occurred.");
+                                e.printStackTrace();
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         } finally {
@@ -250,7 +280,14 @@ public class Main {
                     case (4):
                         init();
                         try {
-                            File completeFile = createFile("allDetails");
+                            createFile("allDetails");
+                            try {
+                                connectDB.printAllReport(".\\Reports\\allDetails.txt");
+                                System.out.println("Successfully wrote to file.");
+                            } catch (Exception e) {
+                                System.out.println("An error occurred.");
+                                e.printStackTrace();
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         } finally {
