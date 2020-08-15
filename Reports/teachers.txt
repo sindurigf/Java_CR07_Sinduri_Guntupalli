@@ -1,7 +1,0 @@
-TeacherID  FirstName            LastName             Address                                            Phone Number         EmailID              
-1          Black                Widow                Bigbowlstrasse ,1020 Vienna Austria                +436643366474        john.doe@gmail.com   
-2          Iron                 Man                  Street 3 ,42580 Vienna Austria                     +916641826474        bruce.banner@gmail.com 
-3          Bruce                Banner               Street 4 ,52580 Vienna Austria                     +917702171177        captaing@gmail.com   
-4          Thor                 Odinson              Street 5 ,62580 Vienna Austria                     +919912453377        irong@gmail.com      
-5          Captain              Marvel               Street 6 ,72580 Vienna Austria                     +919908874594        sin@gmail.com        
-6          Loki                 Odinson              Street 7 ,82580 Vienna Austria                     +43664530194         sind@gmail.com       
